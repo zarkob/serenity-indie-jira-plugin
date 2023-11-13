@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>example-usage</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <serenity-folder-path>D:\temp\serenity</serenity-folder-path>
+        <jira-server-instance-url>https://jira-test.mycompany.com</jira-server-instance-url>
+        <jira-project-key>jira-project-key</jira-project-key>
+        <plugin-execution-environment>local-dev</plugin-execution-environment>
+        <jira-username>jira_technical</jira-username>
+        <jira-password>jira_technical</jira-password>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.serenity-indie</groupId>
+                <artifactId>jira-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>update-jira</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.ekryd.echo-maven-plugin</groupId>
+                <artifactId>echo-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>end</id>
+                        <goals>
+                            <goal>echo</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <message>${line.separator}${line.separator}
+                                The project version is ${project.version}-${exampleVersion}
+                                ${line.separator}
+                            </message>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
